@@ -8,6 +8,9 @@
   "scripts": {
     "dev": "concurrently \"npm run dev -w web\" \"npm run dev -w studio-sarah-lopes\""
   },
+  "engines": {
+  "node": "18.x"
+},
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
