@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { client } from '../../../sanityClient';
+import { client, urlFor } from '../../api/sanityClient';
 
 interface Project {
   _id: string;
@@ -16,11 +16,10 @@ export const Home: React.FC = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     
-    // Função para obter os dados de projetos
 useEffect(() => {
   const fetchProjects = async () => {
     try {
-      const query = '*[_type == "project"]' // Consulta para pegar todos os documentos do tipo 'project'
+      const query = '*[_type == "project"]{_id, project, description, image}'
         console.log(query)
         
         const result = await client.fetch<Project[]>(query);
@@ -34,29 +33,33 @@ useEffect(() => {
   };
 
     fetchProjects();
-  }, []); // A função será chamada apenas uma vez, quando o componente for montado
+  }, []);
 
   if (loading) {
     return <div>Carregando...</div>;
   }
 
-  console.log(projects)
+  console.log(urlFor(projects[0]))
   
 
   return (
     <div>
       <h1>Projetos</h1>
-      {/* <div> */}
-        {/* {projects.map((project) => (
-          <div key={project._id}>
-            <h2>{project.project}</h2>
-            <p>{project.description}</p>
-            {project.image && (
-              <img src={project.image.asset.url} alt={project.project} />
-            )}
-          </div>
-        ))}
-      </div> */}
+      {projects.map((item) => (
+        <li>
+          <p>
+            {item._id}
+          </p>
+          <p>
+            {item.project}
+          </p>
+          <p>
+            {item.description}
+          </p>
+          <img src={urlFor(item.image).width(200).url()}/>
+
+        </li>
+      ))}
     </div>
   );
 };
