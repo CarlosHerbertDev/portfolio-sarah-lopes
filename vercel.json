@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "projects": [
+      {
+        "src": "web",
+        "use": "@vercel/static-build",
+        "buildCommand": "npm run build",
+        "outputDirectory": "web/dist"
+      },
+      {
+        "src": "studeio-sarah-lopes",
+        "use": "@vercel/sanity"
+      }
+    ]
+  }
+  
