@@ -58,6 +58,7 @@ useEffect(() => {
           </p>
           <img src={urlFor(item.image).width(200).url()}/>
 
+
         </li>
       ))}
     </div>
