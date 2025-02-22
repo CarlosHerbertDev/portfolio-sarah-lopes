@@ -1,11 +1,14 @@
 
 import './App.css'
-import { Home } from './components/home/home'
+import { Header } from '@components/header/header'
+import { AppRoutes } from './pages/routes'
+
 
 function App() {
   return (
     <>
-      <Home />
+    
+      <AppRoutes />
     </>
   )
 }
