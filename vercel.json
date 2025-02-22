@@ -9,17 +9,17 @@
         }
       },
       {
+        "rewrites": [
+          { "source": "/(.*)", "destination": "/" }
+        ]
+    },
+      {
         "src": "studeio-sarah-lopes/package.json",
         "use": "@vercel/node"
       }
     ],
     "env": {
       "NODE_ENV": "production"
-    },
-    {
-        "rewrites": [
-          { "source": "/(.*)", "destination": "/" }
-        ]
     }
   }
   
