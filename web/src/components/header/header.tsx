@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Nagation, Container } from "./style";
 
 export const Header: React.FC = () => {
 
     return(
-        <header>
-        <ul>
+        <Container>
+        <p>logo aqui</p>
+        <Nagation>
             <li>
                 <Link to ={`/`}>Home</Link>
             </li>
@@ -15,8 +17,8 @@ export const Header: React.FC = () => {
             <li>
                 <Link to ={`/about`}>About</Link>
             </li>
-        </ul>
-        </header>
+        </Nagation>
+        </Container>
 
     )
 

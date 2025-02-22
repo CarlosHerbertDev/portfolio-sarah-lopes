@@ -20,10 +20,7 @@ useEffect(() => {
   const fetchProjects = async () => {
     try {
       const query = '*[_type == "project"]{_id, project, description, image}'
-        console.log(query)
-        
-        const result = await client.fetch<Project[]>(query);
-      
+      const result = await client.fetch<Project[]>(query);
       setProjects(result);
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
@@ -39,14 +36,11 @@ useEffect(() => {
     return <div>Carregando...</div>;
   }
 
-  console.log(urlFor(projects[0]))
-  
-
   return (
     <div>
       <h1>Projetos</h1>
-      {projects.map((item) => (
-        <li>
+      {projects.map((item, index) => (
+        <li key={index}>
           <p>
             {item._id}
           </p>
@@ -57,8 +51,6 @@ useEffect(() => {
             {item.description}
           </p>
           <img src={urlFor(item.image).width(200).url()}/>
-
-
         </li>
       ))}
     </div>
