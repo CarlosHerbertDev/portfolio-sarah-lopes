@@ -1,6 +1,5 @@
 
 import './App.css'
-import { Header } from '@components/header/header'
 import { AppRoutes } from './pages/routes'
 
 
