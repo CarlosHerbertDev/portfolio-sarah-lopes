@@ -1,16 +1,20 @@
 {
     "version": 2,
-    "projects": [
+    "builds": [
       {
-        "src": "web",
+        "src": "web/package.json",
         "use": "@vercel/static-build",
-        "buildCommand": "npm run build",
-        "outputDirectory": "web/dist"
+        "config": {
+          "distDir": "web/dist"
+        }
       },
       {
-        "src": "studeio-sarah-lopes",
-        "use": "@vercel/sanity"
+        "src": "studeio-sarah-lopes/package.json",
+        "use": "@vercel/node"
       }
-    ]
+    ],
+    "env": {
+      "NODE_ENV": "production"
+    }
   }
   
