@@ -15,8 +15,7 @@ export const Nagation =  styled.ul `
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    gap: 20px
+    gap: 30px;
 `
 
 

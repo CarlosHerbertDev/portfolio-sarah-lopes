@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+ import { createGlobalStyle } from "styled-components"
 
 
 const Globalstyle = createGlobalStyle `
@@ -10,7 +10,10 @@ const Globalstyle = createGlobalStyle `
 }
     
 body {
-    font-size: 62.5%;    
+    font-size: 62.5%;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1440pxnn
 }
 
 li {

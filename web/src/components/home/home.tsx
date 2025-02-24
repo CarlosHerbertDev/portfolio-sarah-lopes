@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { client, urlFor } from '../../api/sanityClient';
+import { urlFor } from '../../api/sanityClient';
+import { getDeatisProject } from '@api/service';
 
 interface Project {
   _id: string;
   project: string;
   description: string;
   image: {
-    asset: {
+  asset: {
       url: string;
-    };
+      };
   };
 }
+
 
 export const Home: React.FC = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -19,8 +21,7 @@ export const Home: React.FC = () => {
 useEffect(() => {
   const fetchProjects = async () => {
     try {
-      const query = '*[_type == "project"]{_id, project, description, image}'
-      const result = await client.fetch<Project[]>(query);
+      const result = await getDeatisProject()
       setProjects(result);
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
