@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { client, urlFor } from '../../api/sanityClient';
+import { client } from '../../api/sanityClient';
 
 interface Project {
   _id: string;
