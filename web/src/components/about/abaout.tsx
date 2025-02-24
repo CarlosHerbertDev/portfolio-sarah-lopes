@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { urlFor } from '../../api/sanityClient';
-import { getDeatisProject } from '@api/service';
-
-interface Project {
-  _id: string;
-  project: string;
-  description: string;
-  image: {
-    asset: {
-      url: string;
-    };
-  };
-}
+import { getDetailsInfo } from '@api/service';
+import { Project } from '@customTypes/api';
 
 export const About: React.FC = () => {
 
@@ -21,7 +11,7 @@ const [projects, setProjects] = useState<Project[]>([]);
 useEffect(() => {
   const fetchProjects = async () => {
     try {
-      const result = await getDeatisProject()
+      const result = await getDetailsInfo('about')
       setProjects(result);
     } catch (error) {
       console.error('Erro ao buscar projetos:', error);
@@ -48,7 +38,7 @@ useEffect(() => {
             {item._id}
           </p>
           <p>
-            {item.project}
+            {item.title}
           </p>
           <p>
             {item.description}

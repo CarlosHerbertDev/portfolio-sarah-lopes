@@ -21,7 +21,8 @@
       "@components/*": ["components/*"],
       "@contexts/*": ["contexts/*"],
       "@mocks/*": ["mocks/*"],
-      "@styles/*": ["styles/*"]
+      "@customTypes/*": ["customTypes/*"],
+      "@styles/*": ["styles/*"],
     },
     /* Linting */
     "strict": true,
