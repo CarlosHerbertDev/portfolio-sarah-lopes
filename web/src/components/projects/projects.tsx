@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Project } from '@customTypes/api';
 import { getDetailsInfo } from '@api/service';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { urlFor } from '@api/sanityClient';
 export const Projects: React.FC = () => {
 
@@ -24,9 +24,9 @@ useEffect(() => {
     fetchProjects();
   }, []);
 
-  const { scrollYProgress } = useScroll(); // Progresso da rolagem da página
+  // const { scrollYProgress } = useScroll(); // Progresso da rolagem da página
   // const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]); // Animação de opacidade
-  const y = useTransform(scrollYProgress, [1, 0], [100, 0]); // Animação de posição vertical
+  // const y = useTransform(scrollYProgress, [1, 0], [100, 0]); // Animação de posição vertical
 
 
   if (loading) {
