@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { urlFor } from '../../api/sanityClient';
 import { getDetailsInfo } from '@api/service';
 import { Project } from '@customTypes/api';
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export const Home: React.FC = () => {
     const [homeInfo, setHomeInfo] = useState<Project[]>([]);
@@ -22,28 +23,45 @@ useEffect(() => {
   fetchHomeInfo();
   }, []);
 
+
+  const { scrollYProgress } = useScroll(); // Progresso da rolagem da página
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]); // Animação de opacidade
+  const y = useTransform(scrollYProgress, [0, 1], [100, 0]); // Animação de posição vertical
+
   if (loading) {
-    return <div>Carregando...</div>;
+      return <div>Carregando...</div>;
   }
-  console.log(homeInfo)
-  
+
+  console.log(homeInfo);
+
   return (
-    <div>
-      <h1>Projetos</h1>
-      {homeInfo.map((item, index) => (
-        <li key={index}>
-          <p>
-            {item._id}
-          </p>
-          <p>
-            {item.title}
-          </p>
-          <p>
-            {item.description}
-          </p>
-          <img src={urlFor(item.image).width(200).url()}/>
-        </li>
-      ))}
-    </div>
+      <div style={{ height: "200vh" }}> {/* Para garantir que a página tenha rolagem */}
+          <h1>Projetos</h1>
+          <ul>
+              {homeInfo.map((item, index) => (
+                  <motion.div
+                      key={index}
+                      // style={{
+                      //     listStyleType: "none",
+                      //     margin: "20px 0",
+                      //     padding: "10px",
+                      //     border: "1px solid #ccc",
+                      // }}
+                      initial={{ opacity: 0, x: -50 }} // Começa invisível e deslocado
+                      whileInView={{ opacity: 1, x: 0 }} // Torna-se visível e retorna para a posição original
+                      transition={{ duration: 0.5 }} // Duração da animação
+                      style={{
+                          opacity, // Opacidade baseada no scroll
+                          y, // Posição Y baseada no scroll
+                      }}
+                  >
+                      <p>{item._id}</p>
+                      <p>{item.title}</p>
+                      <p>{item.description}</p>
+                      <img src={urlFor(item.image).width(300).url()} alt={item.title} />
+                  </motion.div>
+              ))}
+          </ul>
+      </div>
   );
 };
