@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Nagation, Container } from "./style";
 
+
 export const Header: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 700);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+
 
     return(
         <Container>
         <p>logo aqui</p>
+        {isMobile ? (
+        <p>Teste</p>
+
+        ) : (
+
         <Nagation>
             <li>
                 <Link to ={`/`}>Home</Link>
@@ -18,6 +36,10 @@ export const Header: React.FC = () => {
                 <Link to ={`/about`}>About</Link>
             </li>
         </Nagation>
+
+        )
+
+    }
         </Container>
 
     )

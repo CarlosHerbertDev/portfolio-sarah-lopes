@@ -49,7 +49,8 @@ useEffect(() => {
                       // }}
                       initial={{ opacity: 0, x: -50 }} // Começa invisível e deslocado
                       whileInView={{ opacity: 1, x: 0 }} // Torna-se visível e retorna para a posição original
-                      transition={{ duration: 0.5 }} // Duração da animação
+                      transition={{ duration: 0.8 }} // Duração da animação
+                      viewport={{ once: true }}
                       style={{
                           opacity, // Opacidade baseada no scroll
                           y, // Posição Y baseada no scroll
