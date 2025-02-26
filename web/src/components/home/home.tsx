@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { urlFor } from '../../api/sanityClient';
 import { getDetailsInfo } from '@api/service';
 import { Project } from '@customTypes/api';
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion} from "framer-motion";
 
 export const Home: React.FC = () => {
     const [homeInfo, setHomeInfo] = useState<Project[]>([]);
@@ -24,9 +24,9 @@ useEffect(() => {
   }, []);
 
 
-  const { scrollYProgress } = useScroll(); // Progresso da rolagem da página
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]); // Animação de opacidade
-  const y = useTransform(scrollYProgress, [0, 1], [100, 0]); // Animação de posição vertical
+  // const { scrollYProgress } = useScroll(); // Progresso da rolagem da página
+  // const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]); // Animação de opacidade
+  // const y = useTransform(scrollYProgress, [0, 1], [100, 0]); // Animação de posição vertical
 
   if (loading) {
       return <div>Carregando...</div>;
@@ -51,10 +51,6 @@ useEffect(() => {
                       whileInView={{ opacity: 1, x: 0 }} // Torna-se visível e retorna para a posição original
                       transition={{ duration: 0.8 }} // Duração da animação
                       viewport={{ once: true }}
-                      style={{
-                          opacity, // Opacidade baseada no scroll
-                          y, // Posição Y baseada no scroll
-                      }}
                   >
                       <p>{item._id}</p>
                       <p>{item.title}</p>

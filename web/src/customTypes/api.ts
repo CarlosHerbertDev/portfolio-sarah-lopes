@@ -11,3 +11,7 @@ export interface Project {
         };
     };
 }
+
+export interface MenuWrapperProps {
+    isOpen: boolean;
+  }

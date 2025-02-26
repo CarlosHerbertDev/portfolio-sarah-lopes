@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Nagation, Container } from "./style";
+import MenuMobile from "@components/menu-mobile/menu-mobile";
+
+
 
 
 export const Header: React.FC = () => {
@@ -21,7 +24,7 @@ export const Header: React.FC = () => {
         <Container>
         <p>logo aqui</p>
         {isMobile ? (
-        <p>Teste</p>
+        <MenuMobile />
 
         ) : (
 
