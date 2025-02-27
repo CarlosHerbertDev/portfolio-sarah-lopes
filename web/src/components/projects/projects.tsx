@@ -24,39 +24,17 @@ useEffect(() => {
     fetchProjects();
   }, []);
 
-  // const { scrollYProgress } = useScroll(); // Progresso da rolagem da página
-  // const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]); // Animação de opacidade
-  // const y = useTransform(scrollYProgress, [1, 0], [100, 0]); // Animação de posição vertical
-
-
   if (loading) {
     return <div>Carregando...</div>;
   }
 
-  console.log(projects)
+  console.log(projects) 
   
   return (
     <div style={{display: 'flex', flexDirection: 'column', gap: '70px' }}>
       <h1>Projetos</h1>
       {projects.map((item, index) => (
-//     <motion.li
-//     key={index}
-//     // style={{
-//     //     listStyleType: "none",
-//     //     margin: "20px 0",
-//     //     padding: "10px",
-//     //     border: "1px solid #ccc",
-//     // }}
-//     initial={{ opacity: 0, x: -50 }} // Começa invisível e deslocado
-//     whileInView={{ opacity: 1, x: 0 }} // Torna-se visível e retorna para a posição original
-//     transition={{ duration: 0.8 }} // Duração da animação
-    
-//     // style={{
-//     //      // Opacidade baseada no scroll
-//     //     y, // Posição Y baseada no scroll
-//     // }}
-    
-// > 
+ 
       <li key={index} style={{ display: 'flex', flexDirection: 'column', gap: '500px',}}>
 
         <Link to={`/projects/${item.slug?.current}`}> 

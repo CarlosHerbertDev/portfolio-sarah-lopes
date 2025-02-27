@@ -1,5 +1,6 @@
 export interface Project {
     _id: string;
+    _createdAt: string;
     title: string;
     description: string;
     slug?: {
@@ -10,8 +11,6 @@ export interface Project {
         url: string;
         };
     };
+    position?: number;
 }
 
-export interface MenuWrapperProps {
-    isOpen: boolean;
-  }
