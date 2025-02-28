@@ -25,33 +25,11 @@ useEffect(() => {
 
         console.log('detalhes', details)
         
-
-      //   result.forEach((item: Project, index: number) => {
-      //     const position = details[0].position
-    
-      //     if (position === 0 && position + 1 === index) {
-
-      //       setTeste({
-      //         next: item.slug?.current
-      //       });
-      //     } 
-      //     else if (position === index -1){
-
-      //       setTeste({
-      //         prev: item.slug?.current
-      //       });
-            
-      //     } else {
-              
-      //     }
-
-
-      // })
       const position = details?.[0]?.position;
 
             setTeste({
-                next: position !== undefined ? result?.[position + 1]?.slug?.current : '',
-                prev: position !== undefined ? result?.[position - 1]?.slug?.current : '',
+                next: position !== undefined ? result?.[position + 1]?.slug?.current ?? '' : '',
+                prev: position !== undefined ? result?.[position - 1]?.slug?.current ?? '' : '',
             })
 
             setProjects(details)
@@ -96,16 +74,20 @@ useEffect(() => {
             <div>
             <div>
             <Link to={`/projects/${teste.prev}`}>
-                <p style={{ padding: '10px', border: '1px solid black', borderRadius:'5px', cursor:'pointer'}}>
-                  Anterior ⬅️
-                </p>
+                <button 
+                disabled={teste.prev === ''}
+                style={{ padding: '10px', border: '1px solid black', borderRadius:'5px', cursor:'pointer'}}>
+                   ⬅️ Anterior
+                </button>
             </Link>
             </div>
             </div>
               <Link to={`/projects/${teste.next}`}>
-                <p style={{ padding: '10px', border: '1px solid black', borderRadius:'5px', cursor:'pointer'}}>
+                <button 
+                disabled={teste.next === ''}
+                style={{ padding: '10px', border: '1px solid black', borderRadius:'5px', cursor:'pointer'}}>
                   Proximo ➡️
-                </p>
+                </button>
               </Link>
           </div>
     </div>
