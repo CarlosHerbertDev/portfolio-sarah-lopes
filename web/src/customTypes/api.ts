@@ -14,3 +14,8 @@ export interface Project {
     position?: number;
 }
 
+export interface PrevNext {
+    next?: string;
+    prev?: string
+
+}

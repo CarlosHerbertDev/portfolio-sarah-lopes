@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Project } from '@customTypes/api';
+import { PrevNext, Project } from '@customTypes/api';
 import { getDetailsInfo } from '@api/service';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { urlFor } from '@api/sanityClient';
 
 export const ProjectsDetails: React.FC = () => {
 
 const [projects, setProjects] = useState<Project[]>([]);
 const [loading, setLoading] = useState<boolean>(true);
-const [teste, setTeste] = useState<Project[]>([])
+const [teste, setTeste] = useState<PrevNext>({})
 const { name } = useParams<string>()
 
 console.log(name)
@@ -20,30 +20,39 @@ useEffect(() => {
       const result = await getDetailsInfo('project')
         const details = result.filter((item: Project, index: number) => {
             item.position = index
-           return name === item.slug?.current
+            return name === item.slug?.current
         })
 
         console.log('detalhes', details)
         
 
-        const PrevNext = result.filter((_, index: number) => {
-          const position = details[0].position
+      //   result.forEach((item: Project, index: number) => {
+      //     const position = details[0].position
     
-          if (position === 0) {
+      //     if (position === 0 && position + 1 === index) {
 
-            return position + 1 === index
+      //       setTeste({
+      //         next: item.slug?.current
+      //       });
+      //     } 
+      //     else if (position === index -1){
 
-          } else if (position === result.length -1){
-
-            return position  - 1 === index 
+      //       setTeste({
+      //         prev: item.slug?.current
+      //       });
             
-          } else {
-              return index - 1 && index + 1
-          }
+      //     } else {
+              
+      //     }
 
 
-      })
-            setTeste(PrevNext)
+      // })
+      const position = details?.[0]?.position;
+
+            setTeste({
+                next: position !== undefined ? result?.[position + 1]?.slug?.current : '',
+                prev: position !== undefined ? result?.[position - 1]?.slug?.current : '',
+            })
 
             setProjects(details)
     } catch (error) {
@@ -54,7 +63,7 @@ useEffect(() => {
   };
 
     fetchProjects();
-  }, []);
+  }, [name]);
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -82,6 +91,23 @@ useEffect(() => {
           <img src={urlFor(item.image).width(200).url()}/>
         </li>
       ))}
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px'}}>
+            <div>
+            <div>
+            <Link to={`/projects/${teste.prev}`}>
+                <p style={{ padding: '10px', border: '1px solid black', borderRadius:'5px', cursor:'pointer'}}>
+                  Anterior ⬅️
+                </p>
+            </Link>
+            </div>
+            </div>
+              <Link to={`/projects/${teste.next}`}>
+                <p style={{ padding: '10px', border: '1px solid black', borderRadius:'5px', cursor:'pointer'}}>
+                  Proximo ➡️
+                </p>
+              </Link>
+          </div>
     </div>
   );
 }
