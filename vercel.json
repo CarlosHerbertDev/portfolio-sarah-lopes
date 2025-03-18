@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "web/package.json",
+        "src": "packages/web/package.json",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "web/dist"
+          "distDir": "packages/web/dist"
         }
       },
       {
-        "src": "studeio-sarah-lopes/package.json",
+        "src": "packages/studeio-sarah-lopes/package.json",
         "use": "@vercel/node"
       }
     ],
