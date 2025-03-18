@@ -1,16 +1,14 @@
 {
   "name": "meu-projeto",
   "private": true,
-  "workspaces": [
-    "studio-sarah-lopes",
-    "web"
-  ],
-  "scripts": {
-    "dev": "concurrently \"npm run dev -w web\" \"npm run dev -w studio-sarah-lopes\""
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
-  "engines": {
-  "node": "18.x"
-},
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w web\" \"npm run dev -w sarah-lopes\""
+  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
